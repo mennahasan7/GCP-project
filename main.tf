@@ -6,7 +6,6 @@ module "IAM" {
     "compute.googleapis.com",              # Compute Engine API
     "artifactregistry.googleapis.com",     # Artifact Registry API
     "container.googleapis.com"             # Kubernetes Engine API
-
   ]
 }
 
@@ -18,7 +17,7 @@ module "Network" {
   management-subnet-region = "us-central1"
   workload-subnet-cidr     = "10.1.0.0/16"
   workload-subnet-region   = "asia-east1"
-  depends_on               = [module.IAM]
+  depends_on               = [ module.IAM ]
 }
 
 module "Compute" {
@@ -34,18 +33,18 @@ module "Compute" {
     "asia-east1-b",
     "asia-east1-c"
   ]
-  cluster_node_machine_type = "e2-micro"
+  cluster_node_machine_type = "n1-standard-1"
   cluster_node_disk_type    = "pd-standard"
-  depends_on                = [module.IAM]
   cluster_vpc               = module.Network.vpc.id
   cluster_subnet            = module.Network.workload-subnet.id
   cluster_management_subnet = module.Network.management-subnet.ip_cidr_range
   cluster_service_account   = module.IAM.gke-sa.email
+  depends_on                = [ module.IAM, module.Storage ]
 }
 
 module "Storage" {
   source                     = "./Storage"
   artifact_registry_location = "us-central1"
-  depends_on                 = [module.IAM]
+  depends_on                 = [ module.IAM ]
 }
 

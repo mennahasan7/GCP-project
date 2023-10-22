@@ -1,3 +1,4 @@
+## vm instance variables
 variable "vm_machine_type" {
   description = "machine type for instances"
   type        = string
@@ -28,6 +29,8 @@ variable "vm_service_account" {
   type        = string
 }
 
+
+## gke cluster variables
 variable "cluster_location" {
   description = "location of standard cluster"
   type        = string

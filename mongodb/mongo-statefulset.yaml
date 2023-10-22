@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+ name: mongo
+spec:
+ serviceName: mongo
+ replicas: 3
+ template:
+   metadata:
+     labels:
+       app: mongo
+   spec:
+     terminationGracePeriodSeconds: 10
+     containers:
+       - name: mongo
+         image: us-central1-docker.pkg.dev/menna-402718/project-images/mongo
+         command: ["mongod", " - replSet=rs0", " - bind_ip_all"]
+         ports:
+           - containerPort: 27017
+         volumeMounts:
+           - name: persistent-storage
+             mountPath: /data/db
+ volumeClaimTemplates:
+ - metadata:
+     name: persistent-storage
+     annotations:
+       volume.beta.kubernetes.io/storage-class: "storage"
+   spec:
+     accessModes: [ "ReadWriteOnce" ]
+     resources:
+       requests:
+         storage: 2Gi
