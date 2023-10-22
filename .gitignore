@@ -1,0 +1,4 @@
+mongodb
+*.json
+.terraform*
+*.tfstate*
