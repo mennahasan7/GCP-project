@@ -34,35 +34,26 @@ This repo contains the infrastructure as a code of the needed environment to  de
     Access from your browser at <loadbalancer-IP>:3000    
 
 # Example of the built resources    
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/cea6a1af-cfbc-40e1-ae5a-9dc5134be5d2)
+    ![Screenshot from 2023-10-23 19-08-24](https://github.com/mennahasan7/GCP-project/assets/140804803/2892b868-32ee-453b-a0d6-09acb5bf1e22)
 
     the vpc with all the resources
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/8ac559ff-f6ee-4a05-ac76-e729e4cd3d97)
+    ![Screenshot from 2023-10-23 19-15-04](https://github.com/mennahasan7/GCP-project/assets/140804803/852be2c0-4f1e-486e-b5d4-9d5d1c6c12c3)
 
     both management and workload subnets
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/76914fc4-41bb-4d92-9c3c-87d749450295)
+    ![Screenshot from 2023-10-23 19-16-22](https://github.com/mennahasan7/GCP-project/assets/140804803/2714ab9f-60de-473d-8938-45af360cfcb7)
 
     the artifact registry to store the images
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/9de815a6-434b-42ee-b882-80b04a9e1f21)
+    ![Screenshot from 2023-10-23 19-18-03](https://github.com/mennahasan7/GCP-project/assets/140804803/a75b7d4a-ad2f-4f9f-9ef6-ad645d1cf5f0)
 
     The private cluster where we will deploy the app
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/5aa67687-ca3f-4f9b-be77-ce43d1de2a0c)
-
-    The private vm 
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/f445e80a-dff5-4929-aacb-f3a07b2581a5)
+    ![Screenshot from 2023-10-23 19-18-55](https://github.com/mennahasan7/GCP-project/assets/140804803/ba56cd90-8d6b-494a-bf66-ee203c40cdde)
 
     The service accounts for vm and cluster
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/86edca92-5c19-4ac8-b3b2-977f21ad8989)
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/1383beb6-84d9-47b7-917b-8cbbf383d37e)
-
-    The firewall that allow ssh through IAP tunnel
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/7da71212-36c1-4a67-ab98-12a74de0f996)
-
-    The natgateway for management subnet
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/0ac02474-5e8e-4e12-8d87-a19681698a05)
+    ![Screenshot from 2023-10-23 19-21-35](https://github.com/mennahasan7/GCP-project/assets/140804803/26eb1935-f568-413c-9f35-e6149c39a07d)
+    ![Screenshot from 2023-10-23 19-22-07](https://github.com/mennahasan7/GCP-project/assets/140804803/d58b3210-5870-4579-9dc1-23b5632856ff)
 
     connection the VM the one inside the management subnet with the cluster to be able to deploy the app 
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/dbcee895-02e5-4b07-8450-f36354d55937)
+    ![Screenshot from 2023-10-23 19-31-06](https://github.com/mennahasan7/GCP-project/assets/140804803/703f4ec2-ad67-44b0-a8f2-96131e13ef7f)
 
     commands to run
     
@@ -74,8 +65,8 @@ This repo contains the infrastructure as a code of the needed environment to  de
         kubectl apply -f storage-class.yaml
         kubectl apply -f mongo-statefulset.yaml
         kubectl apply -f headless-service.yaml
-        ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/770b8ee0-7356-4809-bf0f-b5568e60c42f)
-        ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/a82e844d-1580-47dd-b840-b77cbab24cb2)
+        ![Screenshot from 2023-10-23 19-38-52](https://github.com/mennahasan7/GCP-project/assets/140804803/3e767ad7-5af3-47d7-a0be-b4f8d759465c)
+        ![Screenshot from 2023-10-23 19-40-08](https://github.com/mennahasan7/GCP-project/assets/140804803/6fe4917d-3a72-4938-8413-1969b818a950)
 
         ## initialise the mongodb replication set
         kubectl exec -it mongo-0 -- mongosh
@@ -89,40 +80,41 @@ This repo contains the infrastructure as a code of the needed environment to  de
         ]
         })
         exit
-        ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/36d426eb-4c8d-47b8-98eb-12a872d36acd)
-        ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/4fbe465e-35d9-43df-b408-e4050a248e93)
-        ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/eb56de0a-7c49-47a8-ae80-791027f6da47)
-        ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/d6aabdac-19f6-4bde-bfad-4a25596c3cf3)
+        ![Screenshot from 2023-10-23 19-42-16](https://github.com/mennahasan7/GCP-project/assets/140804803/da88f2fd-b4e5-4078-a62c-8e026f8ff86a)
+        ![Screenshot from 2023-10-23 19-43-10](https://github.com/mennahasan7/GCP-project/assets/140804803/51d1d22d-ad22-4003-a482-6fcd9e3182d8)
+        ![Screenshot from 2023-10-23 19-43-33](https://github.com/mennahasan7/GCP-project/assets/140804803/0493aa85-0fe9-4241-83df-7101fb515d3a)
+        ![Screenshot from 2023-10-23 19-43-56](https://github.com/mennahasan7/GCP-project/assets/140804803/f3138672-268d-4a64-aef7-8bef33d03387)
 
         ## build the app image and push to artifact registry
         cd GCP-project/nodejs
         sudo docker build -t us-central1-docker.pkg.dev/menna-402718/project-images/nodejsapp .
         sudo docker push us-central1-docker.pkg.dev/menna-402718/project-images/nodejsapp
-        ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/baba1f30-fe23-45e8-b688-d596fca93975)
+        ![Screenshot from 2023-10-23 19-49-55](https://github.com/mennahasan7/GCP-project/assets/140804803/30e35e4b-72d7-41a6-bab1-5f70e782f327)
 
         ## deploy the app
         kubectl apply -f deployment.yaml
         kubectl apply -f loadbalancer.yaml
-        ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/966816b5-73f1-4603-93f5-70643295a190)
+        ![Screenshot from 2023-10-23 19-52-24](https://github.com/mennahasan7/GCP-project/assets/140804803/c96ca554-f074-4bdf-a3e8-91c2bd14f8d7)
 
     get the pods from the deployment
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/2a55ef54-eca8-42e4-8846-9575676767ac)
+    ![Screenshot from 2023-10-23 19-53-07](https://github.com/mennahasan7/GCP-project/assets/140804803/b3a8711f-6041-45fd-94e4-0d260e40c744)
 
     from the load balancer use the Ip to be able to see the running app
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/b18a28cf-fe98-4413-b35d-e6ac3eae3242)
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/5fc2afa8-1560-4e1b-ba7c-15852adcbbcf)
+    ![Screenshot from 2023-10-23 19-54-06](https://github.com/mennahasan7/GCP-project/assets/140804803/56d02012-9bcf-4894-a274-4bf0b5554774)
+    ![Screenshot from 2023-10-23 19-55-33](https://github.com/mennahasan7/GCP-project/assets/140804803/92f64b81-61eb-47ad-a0e9-3b3f464937f2)
 
     finally use the command "terraform destroy" to destroy all of the built resources
 
 # Test the retainance of data
     
     deleting the primary pod 
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/db7b1b0c-2b02-41fa-ba2e-e18248948a49)
+    ![Screenshot from 2023-10-23 19-59-03](https://github.com/mennahasan7/GCP-project/assets/140804803/5d76e112-6327-4775-8d02-9b5d2d26c0e4)
 
     election of another to be primary
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/395e72af-b00b-45bb-8279-875c39e53233)
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/efac5b00-b41e-4b23-8cc2-52eedb09b77e)
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/2935a97f-059e-4395-8a07-d55b6fb57a5f)
+    ![Screenshot from 2023-10-23 20-00-57](https://github.com/mennahasan7/GCP-project/assets/140804803/1b470bcb-2d43-4519-9ff5-2ce82c5cfdd4)
+    ![Screenshot from 2023-10-23 20-01-24](https://github.com/mennahasan7/GCP-project/assets/140804803/a3da679e-7322-46a2-a967-ae6bb534e0c0)
+    ![Screenshot from 2023-10-23 20-01-39](https://github.com/mennahasan7/GCP-project/assets/140804803/6fdcc56e-7be2-4f8b-945d-8d81ab67a8f0)
 
     data of visits retained 
-    ![image](https://github.com/mennahasan7/GCP-project/assets/140804803/9580bcc0-7313-42d9-b933-de32df01c774)
+    ![Screenshot from 2023-10-23 20-02-23](https://github.com/mennahasan7/GCP-project/assets/140804803/fd2ed576-09d9-4ae2-95a8-b8bf22a8781d)
+
