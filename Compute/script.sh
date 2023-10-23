@@ -18,7 +18,7 @@ apt-get install -y docker-ce docker-ce-cli containerd.io
 ## install kubectl and configuring permissions for GKE cluster
 sudo apt-get install kubectl
 sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
-gcloud container clusters get-credentials private-cluster --location asia-east1-a --project menna-402718
+gcloud container clusters get-credentials private-cluster --location asia-east1 --project menna-402718
 
 ## authentication for artifact registry
 sudo gcloud auth print-access-token | sudo docker login -u oauth2accesstoken --password-stdin  us-central1-docker.pkg.dev
