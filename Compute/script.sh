@@ -28,34 +28,5 @@ sudo docker pull mongo
 sudo docker tag mongo us-central1-docker.pkg.dev/menna-402718/project-images/mongo
 sudo docker push us-central1-docker.pkg.dev/menna-402718/project-images/mongo
 
-## clone my repo to deploy the mongodb 
-sudo git clone https://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@github.com/mennahasan7/GCP-project
-cd GCP-project
-cd mongodb
-kubectl apply -f storage-class.yaml
-kubectl apply -f mongo-statefulset.yaml
-kubectl apply -f headless-service.yaml
-cd ..
-
-## initialise the mongodb replication set
-kubectl exec -it mongo-0 - mongosh
-rs.initiate(
- {
- _id: "rs0",
- members: [
- { _id: 0, host: "mongo-0.mongo:27017" },
- { _id: 1, host: "mongo-1.mongo:27017" },
- { _id: 2, host: "mongo-2.mongo:27017" },
-]
-})
-exit
-
-## build the app image and push to artifact registry
-cd nodejs
-docker bulid -t us-central1-docker.pkg.dev/menna-402718/project-images/nodejsapp
-docker push us-central1-docker.pkg.dev/menna-402718/project-images/nodejsapp
-
-## deploy the app
-kubectl apply -f deployment.yaml
-kubectl apply -f loadbalancer.yaml
-cd ..
+## clone my repo to deploy the mongodb and the nodejs app
+sudo git clone https://github.com/mennahasan7/GCP-project.git
