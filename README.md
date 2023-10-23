@@ -1,6 +1,6 @@
 # GCP-project
 This repo contains the infrastructure as a code of the needed environment to  deploy a simple Node.js web application (stateless) that interacts with a highly available MongoDB (stateful) replicated across 3 zones and consisting of 1 primary and 2 secondaries on the GKE ,alongside some other files like deployment and dockerfile and the application ..
-![project](https://github.com/mennahasan7/GCP-project/assets/140804803/b40a030a-aacb-45b3-b72a-a4f036de0233)
+![project](https://github.com/mennahasan7/GCP-project/assets/140804803/d206bce9-57a2-48c8-a93c-4fafbd9fd539)
 
 # Technologies:
 
