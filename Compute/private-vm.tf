@@ -1,6 +1,6 @@
 # Create private vm
-resource "google_compute_instance" "management-instance" {
-  name         = "management-instance"
+resource "google_compute_instance" "management-vm" {
+  name         = "management-vm"
   machine_type = var.vm_machine_type
   zone         = var.vm_zone
   boot_disk {
@@ -23,5 +23,5 @@ resource "google_compute_instance" "management-instance" {
   }
 
   metadata_startup_script = file("${path.module}/script.sh")
-  depends_on = [ google_container_cluster.private-cluster,google_container_node_pool.nodepool ]
+  depends_on = [ google_container_cluster.private-cluster,google_container_node_pool.cluster-node-pool ]
 }

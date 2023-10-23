@@ -51,6 +51,11 @@ variable "cluster_node_disk_type" {
   type        = string
 }
 
+variable "cluster_node_disk_size_gb" {
+  description = "disk size for cluster"
+  type        = string
+}
+
 variable "cluster_vpc" {
   description = "vpc network for cluster"
   type        = string

@@ -38,10 +38,11 @@ module "Compute" {
   ]
   cluster_node_machine_type = "n1-standard-1"
   cluster_node_disk_type    = "pd-standard"
+  cluster_node_disk_size_gb = 50
   cluster_vpc               = module.Network.vpc.id
   cluster_subnet            = module.Network.workload-subnet.id
   cluster_management_subnet = module.Network.management-subnet.ip_cidr_range
-  cluster_service_account   = module.IAM.gke-sa.email
+  cluster_service_account   = module.IAM.cluster-sa.email
   depends_on                = [module.IAM, module.Storage]
 }
 

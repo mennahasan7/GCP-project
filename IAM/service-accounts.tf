@@ -5,8 +5,8 @@ resource "google_service_account" "vm-sa" {
 }
 
 # Create service account for gke
-resource "google_service_account" "gke-sa" {
-  account_id   = "gke-service-account"
-  display_name = "gke-service-account"
+resource "google_service_account" "cluster-sa" {
+  account_id   = "cluster-service-account"
+  display_name = "cluster-service-account"
 }
 

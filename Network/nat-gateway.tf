@@ -6,8 +6,8 @@ resource "google_compute_router" "router" {
 }
 
 # Create nat gateway for management subnet
-resource "google_compute_router_nat" "nat" {
-  name                               = "nat"
+resource "google_compute_router_nat" "nat-gateway" {
+  name                               = "nat-gateway"
   router                             = google_compute_router.router.name
   region                             = google_compute_router.router.region
   nat_ip_allocate_option             = "AUTO_ONLY"

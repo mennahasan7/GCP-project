@@ -1,6 +1,6 @@
 # Create IAP firwall 
-resource "google_compute_firewall" "allow_ssh" {
-  name      = "allow-ssh"
+resource "google_compute_firewall" "allow_vm_ssh" {
+  name      = "allow-vm-ssh"
   network   = google_compute_network.vpc.id
   direction = "INGRESS"
 

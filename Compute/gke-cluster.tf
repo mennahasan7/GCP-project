@@ -25,8 +25,8 @@ resource "google_container_cluster" "private-cluster" {
 }
 
 # Create cluster Node Pool to allows node pools to be added and removed without re-creating the cluster
-resource "google_container_node_pool" "nodepool" {
-  name           = "nodepool"
+resource "google_container_node_pool" "cluster-node-pool" {
+  name           = "cluster-node-pool"
   location       = google_container_cluster.private-cluster.location
   cluster        = google_container_cluster.private-cluster.name
   node_count     = 1
@@ -37,7 +37,7 @@ resource "google_container_node_pool" "nodepool" {
     preemptible  = true
     machine_type = var.cluster_node_machine_type
     disk_type    = var.cluster_node_disk_type
-    disk_size_gb = 50
+    disk_size_gb = var.cluster_node_disk_size_gb
 
     # attach service account to the cluster
     service_account = var.cluster_service_account
