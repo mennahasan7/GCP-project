@@ -6,7 +6,7 @@ resource "google_compute_subnetwork" "management-subnet" {
   network       = google_compute_network.vpc.id
 }
 
-# Create Subnet for GKE
+# Create Subnet for GKE cluster
 resource "google_compute_subnetwork" "workload-subnet" {
   name          = "workload-subnet"
   ip_cidr_range = var.workload-subnet-cidr

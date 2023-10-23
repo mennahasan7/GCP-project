@@ -1,3 +1,4 @@
+# set values for IAM modules variables
 module "IAM" {
   source     = "./IAM"
   project-ID = var.project-id
@@ -9,7 +10,7 @@ module "IAM" {
   ]
 }
 
-
+# set values for Network modules variables
 module "Network" {
   source                   = "./Network"
   project-ID               = var.project-id
@@ -17,9 +18,10 @@ module "Network" {
   management-subnet-region = "us-central1"
   workload-subnet-cidr     = "10.1.0.0/16"
   workload-subnet-region   = "asia-east1"
-  depends_on               = [ module.IAM ]
+  depends_on               = [module.IAM]
 }
 
+# set values for Compute modules variables
 module "Compute" {
   source             = "./Compute"
   vm_machine_type    = "e2-medium"
@@ -39,12 +41,13 @@ module "Compute" {
   cluster_subnet            = module.Network.workload-subnet.id
   cluster_management_subnet = module.Network.management-subnet.ip_cidr_range
   cluster_service_account   = module.IAM.gke-sa.email
-  depends_on                = [ module.IAM, module.Storage ]
+  depends_on                = [module.IAM, module.Storage]
 }
 
+# set values for Storage modules variables
 module "Storage" {
   source                     = "./Storage"
   artifact_registry_location = "us-central1"
-  depends_on                 = [ module.IAM ]
+  depends_on                 = [module.IAM]
 }
 
