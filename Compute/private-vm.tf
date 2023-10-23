@@ -1,6 +1,6 @@
 # Create private vm
-resource "google_compute_instance" "management-vm" {
-  name         = "management-vm"
+resource "google_compute_instance" "management-instance" {
+  name         = "management-instance"
   machine_type = var.vm_machine_type
   zone         = var.vm_zone
   boot_disk {
