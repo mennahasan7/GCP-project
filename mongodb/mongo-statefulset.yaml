@@ -14,6 +14,16 @@ spec:
        app: mongo
    spec:
      terminationGracePeriodSeconds: 10
+     affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - mongo
+            topologyKey: "kubernetes.io/hostname"
      containers:
        - name: mongo
          image: us-central1-docker.pkg.dev/menna-402718/project-images/mongo

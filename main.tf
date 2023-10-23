@@ -30,8 +30,9 @@ module "Compute" {
   vm_vpc             = module.Network.vpc.id
   vm_subnet          = module.Network.management-subnet.id
   vm_service_account = module.IAM.vm-sa.email
-  cluster_location   = "asia-east1-a"
-  cluster_node_location = [
+  cluster_location   = "asia-east1"
+  node_locations = [
+    "asia-east1-a",
     "asia-east1-b",
     "asia-east1-c"
   ]

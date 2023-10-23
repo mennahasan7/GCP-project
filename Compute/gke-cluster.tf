@@ -1,14 +1,13 @@
 # Creating private cluster ans associate it to workload subnet
 resource "google_container_cluster" "private-cluster" {
-  name     = "private-cluster"
-  location = var.cluster_location
+  name                     = "private-cluster"
+  location                 = var.cluster_location
   remove_default_node_pool = true
   initial_node_count       = 1
-  node_locations           = var.cluster_node_location
   deletion_protection      = false
   # attach the cluster with workload subnet
-  network                  = var.cluster_vpc
-  subnetwork               = var.cluster_subnet
+  network    = var.cluster_vpc
+  subnetwork = var.cluster_subnet
   # ip ranges that can access the private cluster
   master_authorized_networks_config {
     cidr_blocks {
@@ -27,16 +26,18 @@ resource "google_container_cluster" "private-cluster" {
 
 # Create cluster Node Pool to allows node pools to be added and removed without re-creating the cluster
 resource "google_container_node_pool" "nodepool" {
-  name       = "nodepool"
-  location   = google_container_cluster.private-cluster.location
-  cluster    = google_container_cluster.private-cluster.name
-  node_count = 1
+  name           = "nodepool"
+  location       = google_container_cluster.private-cluster.location
+  cluster        = google_container_cluster.private-cluster.name
+  node_count     = 1
+  node_locations = var.node_locations
+
   # cluster nodes configuration
   node_config {
-    preemptible     = true
-    machine_type    = var.cluster_node_machine_type
-    disk_type       = var.cluster_node_disk_type
-    disk_size_gb    = 50
+    preemptible  = true
+    machine_type = var.cluster_node_machine_type
+    disk_type    = var.cluster_node_disk_type
+    disk_size_gb = 50
 
     # attach service account to the cluster
     service_account = var.cluster_service_account

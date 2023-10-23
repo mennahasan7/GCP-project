@@ -36,7 +36,7 @@ variable "cluster_location" {
   type        = string
 }
 
-variable "cluster_node_location" {
+variable "node_locations" {
   description = "List of locations for cluster nodes"
   type        = list(any)
 }

@@ -28,5 +28,3 @@ sudo docker pull mongo
 sudo docker tag mongo us-central1-docker.pkg.dev/menna-402718/project-images/mongo
 sudo docker push us-central1-docker.pkg.dev/menna-402718/project-images/mongo
 
-## clone my repo to deploy the mongodb and the nodejs app
-sudo git clone https://github.com/mennahasan7/GCP-project.git
