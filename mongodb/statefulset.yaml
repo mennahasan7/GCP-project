@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+    name: mongo
+spec:
+  selector:
+    matchLabels:
+      app: mongo
+  serviceName: mongo
+  podManagementPolicy: Parallel
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      terminationGracePeriodSeconds: 10
+      affinity:
+         podAntiAffinity:
+           requiredDuringSchedulingIgnoredDuringExecution:
+           - labelSelector:
+               matchExpressions:
+               - key: app
+                 operator: In
+                 values:
+                 - mongo
+             topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: mongo
+        image: us-central1-docker.pkg.dev/menna-402718/project-images/mongo
+        imagePullPolicy: IfNotPresent
+        args:
+          - --bind_ip
+          - '0.0.0.0,::'
+          - --replSet
+          - rpl0
+          - --auth
+          - --keyFile
+          - /etc/mongo/keyfile
+        env:
+        - name: DBuser
+          value: menna
+        - name: DBpass
+          value: menna888
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - name: common-mongodb-data
+          mountPath: /etc/mongo
+      initContainers:
+      - name: change-ownership-container
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh"]
+        args:
+          - -c
+          - >-
+              /bin/cp /tmp/keyfile /etc/mongo/keyfile &&
+              /bin/chown 999:999 /etc/mongo/keyfile &&
+              /bin/chmod 400 /etc/mongo/keyfile
+        volumeMounts:
+        - name: common-mongodb
+          mountPath: /tmp/
+        - name: common-mongodb-data
+          mountPath: /etc/mongo
+      volumes:
+        - name: common-mongodb
+          configMap:
+            name: common-mongodb
+  volumeClaimTemplates:
+  - metadata:
+      name: common-mongodb-data
+    spec:
+      storageClassName: storage
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 2Gi

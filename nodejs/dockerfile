@@ -11,8 +11,14 @@ RUN npm install
 # Copy the rest of the app
 COPY . .
 
+# Set environment variables
+ENV WEBport=3000
+ENV DBuser=menna
+ENV DBpass=menna888
+ENV DBhosts="mongo-0.mongo:27017,mongo-1.mongo:27017,mongo-2.mongo:27017"
+
 # Expose the port
-EXPOSE 3000
+EXPOSE ${WEBport}
 
 # Start the app
 CMD [ "node", "index.js" ]

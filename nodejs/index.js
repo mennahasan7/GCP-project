@@ -3,10 +3,13 @@ const express = require('express')
 const app = express()
 
 const WEBport = process.env.WEBport || 3000
+const DBuser = process.env.DBuser
+const DBpass = process.env.DBpass   
+const DBhosts = process.env.DBhosts
 
 async function main() {
 
-    const uri = `mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo/test?readPreference=nearest&replicaSet=rs0&authSource=admin`;
+    const uri = `mongodb://${DBuser}:${DBpass}@${DBhosts}/admin?readPreference=nearest&replicaSet=rpl0&authSource=admin`;
     const client = new MongoClient(uri);
 
     try {
