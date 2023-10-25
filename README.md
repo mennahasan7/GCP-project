@@ -63,7 +63,8 @@ This repo contains the infrastructure as a code of the needed environment to  de
         ## deploy the app
         cd GCP-project/mongodb
         kubectl apply -f storage-class.yaml
-        kubectl apply -f mongo-statefulset.yaml
+        kubectl apply -f config.yaml
+        kubectl apply -f statefulset.yaml
         kubectl apply -f headless-service.yaml
 ![Screenshot from 2023-10-23 19-38-52](https://github.com/mennahasan7/GCP-project/assets/140804803/3e767ad7-5af3-47d7-a0be-b4f8d759465c)
 ![Screenshot from 2023-10-23 19-40-08](https://github.com/mennahasan7/GCP-project/assets/140804803/6fe4917d-3a72-4938-8413-1969b818a950)
@@ -72,13 +73,22 @@ This repo contains the infrastructure as a code of the needed environment to  de
         kubectl exec -it mongo-0 -- mongosh
         rs.initiate(
         {
-        _id: "rs0",
+        _id: "rpl0",
         members: [
         { _id: 0, host: "mongo-0.mongo:27017" },
         { _id: 1, host: "mongo-1.mongo:27017" },
         { _id: 2, host: "mongo-2.mongo:27017" },
         ]
         })
+        admin = db.getSiblingDB("admin")
+        admin.createUser(
+          {
+            user: "menna",
+            pwd: "menna888",
+            roles: [ { role: "root", db: "admin" } ]
+          }
+        )
+        db.getSiblingDB("admin").auth("menna", "menna888") 
         exit
 ![Screenshot from 2023-10-23 19-42-16](https://github.com/mennahasan7/GCP-project/assets/140804803/da88f2fd-b4e5-4078-a62c-8e026f8ff86a)
 ![Screenshot from 2023-10-23 19-43-10](https://github.com/mennahasan7/GCP-project/assets/140804803/51d1d22d-ad22-4003-a482-6fcd9e3182d8)
